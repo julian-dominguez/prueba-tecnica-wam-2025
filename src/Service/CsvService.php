@@ -40,52 +40,12 @@ class CsvService
                 );
             }
 
-            $contenidoCsv = $response->getContent();
-
-            return $this->procesarDatosCsv($contenidoCsv);
+            return $response->getContent();
         } catch (\Exception $e) {
             throw new ServicioCsvException(
               "Error al obtener los datos del CSV: ".$e->getMessage()
             );
         }
-    }
-
-    /**
-     * Función que convierte el contenido del csv en un array asociativo
-     *
-     * @param  string  $datos
-     *
-     * @return array
-     */
-    public function procesarDatosCsv(string $datos): array
-    {
-        $cabeceras = [
-          "Localizador",
-          "Huésped",
-          "Fecha de entrada",
-          "Fecha de salida",
-          "Hotel",
-          "Precio",
-          "Posibles Acciones",
-        ];
-        $lineas = explode("\n", $datos);
-        $reservas = [];
-
-        foreach ($lineas as $linea) {
-            if (empty($linea)) {
-                continue;
-            } // ignoramos líneas vacías de haberlas
-            $datos_linea = str_getcsv(
-              $linea,
-              ";"
-            ); // Convertimos la linea a un arreglo
-            $reservas[] = array_combine(
-              $cabeceras,
-              $datos_linea
-            ); // Combinamos datos
-        }
-
-        return $reservas;
     }
 
 }
