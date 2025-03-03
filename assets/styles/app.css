@@ -1,3 +1,4 @@
-body {
-    background-color: skyblue;
-}
+.container { padding-top: 2rem; }
+.reservas-table { margin-top: 2rem; }
+.search-container { margin-bottom: 2rem; }
+.alert { margin-top: 1rem; }
