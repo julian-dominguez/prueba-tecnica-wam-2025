@@ -62,9 +62,20 @@
                         <td>{{ reserva.hotel }}</td>
                         <td>{{ reserva.precio|format_currency('COP') }}</td>
                         <td>
-                            <span class="badge {% if reserva.posiblesAcciones == 'confirmada' %}bg-success{% elseif reserva.posiblesAcciones == 'cancelada' %}bg-danger{% else %}bg-warning{% endif %}">
-                                {{ reserva.posiblesAcciones|capitalize }}
-                            </span>
+                            {% set acciones = reserva.posiblesAcciones|split(' ') %}
+
+                            {% if reserva.precio != 0 %}
+                                <button type="button" class="btn btn-outline-warning">
+                                    {{ acciones[0]|capitalize }}
+                                </button>
+                                <button type="button" class="btn btn-outline-info">
+                                    {{ acciones[1]|capitalize }}
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-info">
+                                    {{ acciones[1]|capitalize }}
+                                </button>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
