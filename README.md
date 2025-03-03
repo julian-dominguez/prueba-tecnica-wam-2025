@@ -9,7 +9,7 @@
 - Permitir búsqueda por texto libre en cualquier campo
 - Descargar el listado en formato JSON
 
-## Arquitectura y patrones de diseño:
+## 🏗️ Arquitectura y patrones de diseño:
 
 - **Patrón MVC:** Separación clara entre controladores, servicios y vistas
 - **Principios SOLID**:
@@ -20,13 +20,13 @@
     - **I** - Segregación de interfaces: Se usan interfaces específicas en lugar de una grande
     - **D** - Inversión de dependencias: Las clases dependen de abstracciones, no de implementaciones
 
-## Versiónes
+## ❗ Versiónes
 
 - **PHP:** 8.2
 - **Symfony:** 7.2
 - **Boostrap:** 5
 
-## Aclaraciones
+## ⚠️ Aclaraciones
 
 1. Se debe declarar en el env los valores correctos para:
 
@@ -39,3 +39,19 @@
 3. Aunque no se tenga conexión a base de datos se usa el repository para mantener la coherencia del MVC con la
    estructura establecida con Symfony para las consultas de información
 4. Dado que es una prueba no se utiliza ningún sistema de autenticación
+5. Solo se realizan pruebas unitarias a los servicios dado que estas son las que contienen toda la lógica de negocio.
+
+## ▶️ Instalación
+
+1. Clona el repositorio.
+2. Instala las dependencias con `composer install`.
+3. Ejecuta el servidor con `symfony serve`.
+4. Accede a la aplicación en `http://localhost:8000`.
+
+## 🔱 Pruebas
+
+Ejecuta las pruebas unitarias con:
+
+```bash
+  php bin/phpunit
+```
