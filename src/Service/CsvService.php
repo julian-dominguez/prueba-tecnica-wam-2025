@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Reserva;
 use App\Exception\ServicioCsvException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -47,5 +48,48 @@ class CsvService
             );
         }
     }
+
+    /**
+     * Función que convierte el contenido del csv en un array de objetos tipo
+     * Reserva
+     *
+     * @param  string  $datos
+     *
+     * @return array
+     * @throws \DateMalformedStringException
+     */
+    public function procesarDatosCsv(string $datos): array
+    {
+        $cabeceras = [
+          "localizador",
+          "huesped",
+          "fechaEntrada",
+          "fechaSalida",
+          "hotel",
+          "precio",
+          "posiblesAcciones",
+        ];
+        $lineas = explode("\n", $datos);
+        $reservas = [];
+
+        foreach ($lineas as $linea) {
+            if (empty($linea)) {
+                continue;
+            } // ignoramos líneas vacías de haberlas
+            $datos_linea = str_getcsv(
+              $linea,
+              ";"
+            ); // Convertimos la linea a un arreglo
+            $reserva = array_combine(
+              $cabeceras,
+              $datos_linea
+            ); // Combinamos datos
+
+            $reservas[] = Reserva::crearDesdeArray($reserva);
+        }
+
+        return $reservas;
+    }
+
 
 }
