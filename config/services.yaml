@@ -22,3 +22,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\CsvService:
+        arguments:
+            $endpoint: '%env(RESERVAS_API_ENDPOINT)%'
+            $user: '%env(RESERVAS_API_USER)%'
+            $password: '%env(RESERVAS_API_PASS)%'
