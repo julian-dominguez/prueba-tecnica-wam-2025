@@ -12,8 +12,8 @@ class ServicioCsvException extends \Exception
 {
 
     public function __construct(
-      $message = "Error al conectar con el servicio CSV",
-      $code = 0,
+      $message = "Error al conectar con el servidor que provee el CSV",
+      $code = 500,
       Throwable $previous = null
     ) {
         parent::__construct($message, $code, $previous);
